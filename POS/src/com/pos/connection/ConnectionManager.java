@@ -3,10 +3,14 @@ package com.pos.connection;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionManager {
 	public static Connection conn;
-	public static String JDBC_URL = "jdbc:sqlserver://127.0.0.1\\sqlexpress;databaseName=PHARMACY;user=sa;password=123";
+	public static String JDBC_URL = "jdbc:sqlserver://127.0.0.1\\sqlexpress;databaseName=POS;user=sa;password=123";
 	
 	private ConnectionManager() {
 		
@@ -25,5 +29,36 @@ public class ConnectionManager {
         }
 		
 		return conn;
+	}
+	
+	public static ResultSet queryExecutor(Connection conn,String sql) {
+		ResultSet rs = null;
+		try {
+			Statement stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			System.out.println("Sql-----> "+sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			return rs;
+		}
+			
+	}
+	
+	public static int queryInsert(Connection conn,String sql) {
+		int count=0;
+		try {
+			Statement stmt=conn.createStatement();
+			count=stmt.executeUpdate(sql);
+			
+			System.out.println("Sql-----> "+sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			return count;
+		}
+			
 	}
 }

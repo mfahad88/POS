@@ -10,19 +10,19 @@ public class Products {
 
 	
 	
-	
+	private SimpleIntegerProperty id=new SimpleIntegerProperty();
 	private SimpleStringProperty name=new SimpleStringProperty("");
 	private SimpleStringProperty quantity=new SimpleStringProperty("");
 	private SimpleStringProperty price=new SimpleStringProperty("");
 	private SimpleStringProperty cost=new SimpleStringProperty("");
-	private SimpleStringProperty reorder_level=new SimpleStringProperty("");
+	private SimpleStringProperty reorder_level=new SimpleStringProperty();
 	private SimpleStringProperty expiry_date=new SimpleStringProperty("");
 	private SimpleBooleanProperty is_activated=new SimpleBooleanProperty(false);
-	private CheckBox checkBox;
+//	private CheckBox checkBox;
 	
 	
-	public Products(String name, String quantity, String price, String cost, String reorder_level, String expiry_date, Boolean is_activated) {
-		
+	public Products(int id,String name, String quantity, String price, String cost, String reorder_level, String expiry_date, Boolean is_activated) {
+		setId(id);
 		setName(name);
 		setQuantity(quantity);
 		setPrice(price);
@@ -32,6 +32,11 @@ public class Products {
 		setIs_activated(is_activated);
 		
 		
+	}
+	
+	
+	public int getId() {
+		return id.get();
 	}
 	public String getName() {
 		return name.get();
@@ -53,9 +58,13 @@ public class Products {
 	}
 	public Boolean getIs_activated() {
 		return is_activated.get();
-	}	
-	public CheckBox getCheckBox() {
-		return checkBox;
+	}
+//	public CheckBox getCheckBox() {
+//		return checkBox;
+//	}
+//	
+	public void setId(int id) {
+		this.id.set(id);
 	}
 	
 	public void setName(String name) {
@@ -78,17 +87,20 @@ public class Products {
 	}
 	public void setIs_activated(Boolean is_activated) {
 		this.is_activated.set(is_activated);
-		this.checkBox=new CheckBox();
-		this.checkBox.setSelected(is_activated);
+//		this.checkBox=new CheckBox();
+//		this.checkBox.setSelected(is_activated);
 		
 		
 	}
+
+
 	@Override
 	public String toString() {
-		return "Products [name=" + name + ", quantity=" + quantity + ", price=" + price + ", cost=" + cost
-				+ ", reorder_level=" + reorder_level + ", expiry_date=" + expiry_date + ", is_activated=" + is_activated
-				+ "checkbox="+checkBox.isSelected()+"]";
+		return "Products [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", cost="
+				+ cost + ", reorder_level=" + reorder_level + ", expiry_date=" + expiry_date + ", is_activated="
+				+ is_activated + "]";
 	}
+	
 	
 	
 	
