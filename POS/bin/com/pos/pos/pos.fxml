@@ -34,7 +34,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="txt_invoice" editable="false" layoutX="92.0" layoutY="10.0">
+                  <TextField fx:id="txt_invoice" editable="true" layoutX="92.0" layoutY="10.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -83,7 +83,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="txt_search" prefHeight="27.0" prefWidth="256.0">
+            <TextField fx:id="txt_search" onKeyTyped="#handleSearchMedicine" prefHeight="27.0" prefWidth="256.0">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -93,15 +93,15 @@
       </HBox>
       <HBox layoutX="37.0" layoutY="126.0" prefHeight="378.0" prefWidth="892.0" spacing="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="126.0">
          <children>
-            <TableView prefHeight="435.0" prefWidth="1100.0">
+            <TableView fx:id="tbl_medicine" onKeyPressed="#handleCartKey" onMouseClicked="#handleCart" prefHeight="435.0" prefWidth="1100.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Medicine Name" />
+                <TableColumn fx:id="col_medicine_name" editable="false" prefWidth="75.0" text="Medicine Name" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView prefHeight="269.0" prefWidth="1281.0">
+            <TableView fx:id="tbl_invoice" editable="true" prefHeight="269.0" prefWidth="1281.0">
               <columns>
                 <TableColumn fx:id="col_name" prefWidth="215.0" sortable="false" text="Name" />
                 <TableColumn fx:id="col_price" prefWidth="91.0" sortable="false" text="Price" />
@@ -118,9 +118,9 @@
       <HBox alignment="BOTTOM_RIGHT" layoutX="510.0" layoutY="571.0" prefHeight="27.0" prefWidth="766.0" spacing="10.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="510.0">
          <children>
             <Label prefHeight="18.0" prefWidth="68.0" text="Total Items" />
-            <Label fx:id="txt_items" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="50.0" text="0" />
+            <Label fx:id="lbl_items" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="50.0" text="0" />
             <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="15.0" prefHeight="18.0" prefWidth="72.0" text="Total" />
-            <Label fx:id="txt_total" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="15.0" prefHeight="18.0" prefWidth="72.0" text="0" />
+            <Label fx:id="lbl_total" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="15.0" prefHeight="18.0" prefWidth="72.0" text="0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -129,9 +129,9 @@
       <HBox alignment="BOTTOM_RIGHT" layoutX="127.0" layoutY="606.0" prefHeight="27.0" prefWidth="386.0" spacing="10.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="545.0">
          <children>
             <Label prefHeight="17.0" prefWidth="73.0" text="Discount" />
-            <RadioButton alignment="TOP_CENTER" mnemonicParsing="false" text="\%" />
-            <RadioButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="360.0" layoutY="15.0" mnemonicParsing="false" text="Rs." />
-            <TextField prefHeight="25.0" prefWidth="122.0" />
+            <RadioButton fx:id="radio_percent" alignment="TOP_CENTER" mnemonicParsing="false" selected="true" text="\%" />
+            <RadioButton fx:id="radio_rupees" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="360.0" layoutY="15.0" mnemonicParsing="false" text="Rs." />
+            <TextField fx:id="txt_discount" onKeyTyped="#handleDiscount" prefHeight="25.0" prefWidth="122.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -140,25 +140,25 @@
       <HBox alignment="BOTTOM_RIGHT" layoutX="510.0" layoutY="649.0" prefHeight="27.0" prefWidth="386.0" spacing="10.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="590.0">
          <children>
             <Label prefHeight="17.0" prefWidth="89.0" text="Total Payable" />
-            <Label prefHeight="17.0" prefWidth="78.0" text="0">
+            <Label fx:id="lbl_payable" prefHeight="17.0" prefWidth="78.0" text="0">
                <padding>
                   <Insets left="3.0" />
                </padding>
             </Label>
             <Label layoutX="214.0" layoutY="15.0" prefHeight="17.0" prefWidth="117.0" text="Received Amount" />
-            <TextField prefHeight="25.0" prefWidth="114.0" />
+            <TextField fx:id="txt_recv_amount" prefHeight="25.0" prefWidth="114.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <Button layoutX="510.0" layoutY="635.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Pay" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="635.0" />
+      <Button fx:id="btn_pay" layoutX="510.0" layoutY="635.0" mnemonicParsing="false" onAction="#handlePay" prefHeight="25.0" prefWidth="104.0" text="Pay" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="635.0" />
       <HBox layoutX="146.0" layoutY="533.0" prefHeight="59.0" prefWidth="351.0" spacing="20.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="545.0" AnchorPane.topAnchor="533.0">
          <children>
             <VBox prefHeight="59.0" prefWidth="353.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="351.0" text="Hold" />
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="363.0" text="Cancel" />
+                  <Button fx:id="btn_hold" mnemonicParsing="false" onAction="#handleHold" prefHeight="25.0" prefWidth="351.0" text="Hold" />
+                  <Button fx:id="btn_cancel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="363.0" text="Cancel" />
                </children>
             </VBox>
          </children>

@@ -47,12 +47,12 @@
                      </font>
                   </Label>
                   <TextField fx:id="txt_qty" prefHeight="25.0" prefWidth="92.0" />
-                  <Label layoutX="354.0" layoutY="15.0" prefHeight="17.0" prefWidth="81.0" text="Expiry Date">
+                  <Label layoutX="354.0" layoutY="15.0" prefHeight="17.0" prefWidth="69.0" text="Expiry Date">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_date" layoutX="433.0" layoutY="15.0" prefHeight="25.0" prefWidth="134.0" />
+                  <TextField fx:id="txt_date" layoutX="433.0" layoutY="15.0" prefHeight="25.0" prefWidth="142.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

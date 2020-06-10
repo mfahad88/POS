@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pos.customerdialog.CustomerDialogController">
    <children>
-      <TableView layoutY="39.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="77.0">
+      <TableView fx:id="tbl_customer" layoutY="39.0" onMouseClicked="#handleCustomerSelect" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="77.0">
         <columns>
           <TableColumn fx:id="col_customer_name" prefWidth="75.0" text="CustomerName" />
           <TableColumn fx:id="col_mobile_no" prefWidth="75.0" text="Mobile No." />
@@ -30,12 +30,12 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="txt_mobile" prefWidth="149.0">
+                  <TextField fx:id="txt_mobile" onKeyTyped="#handleSearchMobile" prefWidth="149.0">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="btn_search" mnemonicParsing="false" text="Search">
+                  <Button fx:id="btn_search" mnemonicParsing="false" onAction="#handleBtnSearch" text="Search">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -64,7 +64,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="btn_add" mnemonicParsing="false" text="Add">
+                  <Button fx:id="btn_add" mnemonicParsing="false" onAction="#handleBtnAdd" text="Add">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>

@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class ConnectionManager {
 	public static Connection conn;
 	public static String JDBC_URL = "jdbc:sqlserver://127.0.0.1\\sqlexpress;databaseName=POS;user=sa;password=123";
@@ -36,7 +39,9 @@ public class ConnectionManager {
 		try {
 			Statement stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
-			System.out.println("Sql-----> "+sql);
+			System.out.println("---------------------------->SELECT QUERY<----------------------------");
+			System.out.println(sql);
+			System.out.println("---------------------------->SELECT QUERY END<----------------------------");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,10 +57,17 @@ public class ConnectionManager {
 			Statement stmt=conn.createStatement();
 			count=stmt.executeUpdate(sql);
 			
-			System.out.println("Sql-----> "+sql);
+			System.out.println("---------------------------->INSERT QUERY<----------------------------");
+			System.out.println(sql);
+			System.out.println("---------------------------->INSERT QUERY END<----------------------------");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Alert alert=new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
+			
 		}finally {
 			return count;
 		}
